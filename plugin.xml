@@ -69,4 +69,20 @@
 	</platform>
 
 
+	<platform name="ios">
+                <!-- ios-specific elements -->
+                <config-file target="config.xml" parent="/*">
+                        <feature name="BluenetDfuPlugin" >
+                                <param name="ios-package" value="BluenetDfuPlugin"/>
+                        </feature>
+                        <framework src="CoreBluetooth.framework" />
+                </config-file>
+                <config-file target="*-Info.plist" parent="UIBackgroundModes">
+                        <array>
+                                <string>bluetooth-central</string>
+                        </array>
+                </config-file>
+                <header-file src="src/ios/BluenetDfuPlugin.h" />
+                <source-file src="src/ios/BluenetDfuPlugin.m" />
+	</platform>
 </plugin>

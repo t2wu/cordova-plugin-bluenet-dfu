@@ -31,6 +31,7 @@
 
 		<!-- Use DFU Library from nordic -->
 		<!-- <framework src="src/android/LibraryProject" custom="true" /> -->
+                <framework src="build-extras.gradle" custom="true" type="gradleReference"/>
 
 		<!-- Add Strings used by the nordic library -->
 		<config-file target="res/values/strings.xml" parent="/resources">

@@ -124,17 +124,20 @@ NSString *const kAvgSpeed = @"avg_speed";
     
     //let firmware = DFUFirmware.init(urlToZipFile: NSURL(fileURLWithPath: path))
     DFUFirmware *firmware = [[DFUFirmware alloc] initWithUrlToZipFile:[NSURL fileURLWithPath:self.firmwarePath]];
-    [initiator withFirmware:firmware];
+    //    [initiator withFirmware:firmware];
     //    [initiator withFirmwareFile:firmware];
-    initiator.forceDfu = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dfu_force_dfu"] boolValue];
+    initiator.forceDfu = NO;
+    
     //    initiator.packetReceiptNotificationParameter = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dfu_number_of_packets"] intValue];
     initiator.packetReceiptNotificationParameter = 12;
+    initiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = YES;
     initiator.logger = self;
     initiator.delegate = self;
     initiator.progressDelegate = self;
     // initiator.peripheralSelector = ... // the default selector is used
     
-    self.controller = [initiator start];
+    self.controller = [[initiator withFirmware:firmware] start];
+    //    self.controller = [initiator start];
 }
 
 #pragma mark - DFUProgressDelegate
